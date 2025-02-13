@@ -1,6 +1,12 @@
+import { Container } from "react-bootstrap";
+import Tables from "../../features/Tables/Tables";
+
 const Home = () => {
     return(
-        <h1>Home</h1>
+        <Container>
+            <h1>All Tables:</h1>
+            <Tables />
+        </Container>
     );
 }
 
