@@ -1,5 +1,11 @@
 //selectors
 export const getAllTables = ({tables}) => tables;
+export const getTableById = ({tables}, tableId) => {
+  const currentTable = tables.find(table => table.id === tableId);
+  if(!currentTable) return null
+  else return currentTable;
+}
+export const getAllStatuses = ({tables}) => [...new Set(tables.map(table => table.status))];
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
