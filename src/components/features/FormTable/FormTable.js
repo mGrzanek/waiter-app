@@ -11,7 +11,7 @@ import styles from "./FormTable.module.scss";
 import { useForm } from 'react-hook-form';
 
 
-const FormTable = ({id, status, peopleAmount, maxPeopleAmount, bill}) => {
+const FormTable = ({id, status, peopleAmount, maxPeopleAmount, bill, txtBtn}) => {
     const [currentStatus, setCurrentStatus] = useState(status);
     const [currentPeopleAmount, setCurrentPeopleAmount] = useState(peopleAmount);
     const [currentMaxPeopleAmount, setCurrentMaxPeopleAmount] = useState(maxPeopleAmount);
@@ -29,9 +29,9 @@ const FormTable = ({id, status, peopleAmount, maxPeopleAmount, bill}) => {
         dispatch(editTableRequest({ 
             id, 
             status: currentStatus, 
-            peopleAmount: currentPeopleAmount, 
-            maxPeopleAmount: currentMaxPeopleAmount, 
-            bill: currentBill 
+            peopleAmount: parseInt(currentPeopleAmount), 
+            maxPeopleAmount: parseInt(currentMaxPeopleAmount), 
+            bill: parseInt(currentBill) 
         }));
         navigate("/");
     };
@@ -106,7 +106,7 @@ const FormTable = ({id, status, peopleAmount, maxPeopleAmount, bill}) => {
                     {errors.currentBill && <small className="d-block form-text text-danger mt-2">Required field</small>}
                 </div>
             </Form.Group>}
-            <Button type="submit" className="my-2">Update</Button>
+            <Button type="submit" className="my-2">{txtBtn}</Button>
         </Form>
     );
 }
@@ -116,7 +116,8 @@ FormTable.propTypes = {
     status: PropTypes.string.isRequired,
     peopleAmount: PropTypes.number.isRequired,
     maxPeopleAmount: PropTypes.number.isRequired,
-    bill: PropTypes.number.isRequired
+    bill: PropTypes.number.isRequired,
+    txtBtn: PropTypes.string.isRequired
 }
 
 export default FormTable;

@@ -8,6 +8,7 @@ const NavBar = () => {
                     <Navbar.Brand as={NavLink} to="/">Waiter.app</Navbar.Brand>      
                     <Nav>
                         <Nav.Link data-testid="home-link"  as={NavLink} to="/">Home</Nav.Link>
+                        <Nav.Link data-testid="add-link"  as={NavLink} to="/table/add">Add</Nav.Link>
                     </Nav>  
                 </Container>   
         </Navbar>

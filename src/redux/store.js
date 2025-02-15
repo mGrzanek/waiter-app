@@ -6,7 +6,7 @@ import initialState from './initialState';
 
 const subreducers = {
     tables: tablesReducer,
-    status: statusReducer
+    status: statusReducer,
 }
 
 const reducer = combineReducers(subreducers);

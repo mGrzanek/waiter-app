@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router";
 import { Navigate } from "react-router";
 import { useSelector } from "react-redux";
@@ -14,7 +13,7 @@ const Table = () => {
     else return(
         <Container>
             <h4>Table {table.id}</h4>
-            <FormTable {...table} />
+            <FormTable txtBtn="Update" {...table} />
         </Container>
     );
 }

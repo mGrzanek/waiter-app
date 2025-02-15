@@ -1,12 +1,12 @@
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup, Button, Spinner } from "react-bootstrap";
 import { getAllTables } from "../../../redux/tablesReducer";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Tables = () => {
     const tables = useSelector(getAllTables);
-    if(!tables) return <h4>Loading...</h4>
-    return(
+    if(!tables) return <Spinner animation="border" variant="primary" />
+    else return(
         <ListGroup className="pt-4">
             {tables.map(table => 
             <ListGroup.Item key={table.id} className="p-3 d-flex justify-content-between align-items-center border-0 border-bottom ">
