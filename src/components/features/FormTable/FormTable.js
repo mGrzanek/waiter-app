@@ -1,20 +1,40 @@
-import { useSelector } from "react-redux";
+import PropTypes from 'prop-types';
+import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { getAllStatuses } from "../../../redux/tablesReducer";
+import { useNavigate } from "react-router";
+import { useSelector } from 'react-redux';
+import { getAllStatuses } from '../../../redux/statusReducer';
+import { editTableRequest } from "../../../redux/tablesReducer";
 import { Form, Button } from "react-bootstrap";
 import clsx from "clsx";
 import styles from "./FormTable.module.scss";
 
 
-const FormTable = ({status, peopleAmount, maxPeopleAmount, bill}) => {
-    const statuses = useSelector(getAllStatuses);
+const FormTable = ({id, status, peopleAmount, maxPeopleAmount, bill}) => {
+    const tableStatuses = useSelector(getAllStatuses);
+    console.log(tableStatuses);
     const [currentStatus, setCurrentStatus] = useState(status);
     const [currentPeopleAmount, setCurrentPeopleAmount] = useState(peopleAmount);
     const [currentMaxPeopleAmount, setCurrentMaxPeopleAmount] = useState(maxPeopleAmount);
     const [currentBill, setCurrentBill] = useState(bill);
+    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log(status);
+        dispatch(editTableRequest({ 
+            id, 
+            status: currentStatus, 
+            peopleAmount: currentPeopleAmount, 
+            maxPeopleAmount: currentMaxPeopleAmount, 
+            bill: currentBill 
+        }));
+        navigate("/");
+    }
 
     return(
-        <Form className="col-4">
+        <Form onSubmit={handleSubmit} className="col-4">
             <Form.Group className="py-2 d-flex align-items-center py-3">
                 <Form.Label className="pt-2 col-2"><b>Status:</b></Form.Label>
                 <Form.Select 
@@ -22,8 +42,8 @@ const FormTable = ({status, peopleAmount, maxPeopleAmount, bill}) => {
                     value={currentStatus}
                     onChange={e => setCurrentStatus(e.target.value)}
                 > 
-                    {statuses.map(statusName => 
-                        <option key={statusName} value={statusName}>{statusName}</option>)}
+                    {tableStatuses.map(tableStatus => 
+                        <option key={tableStatus.id} value={tableStatus.name}>{tableStatus.name}</option>)}
                 </Form.Select>
             </Form.Group>
             <Form.Group className="py-2 d-flex align-items-centerpy-3">
@@ -56,6 +76,14 @@ const FormTable = ({status, peopleAmount, maxPeopleAmount, bill}) => {
             <Button type="submit" className="my-2">Update</Button>
         </Form>
     );
+}
+
+FormTable.propTypes = {
+    id: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    peopleAmount: PropTypes.number.isRequired,
+    maxPeopleAmount: PropTypes.number.isRequired,
+    bill: PropTypes.number.isRequired
 }
 
 export default FormTable;

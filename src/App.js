@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchTables } from "./redux/tablesReducer";
+import { fetchStatus } from "./redux/statusReducer";
 import Header from "./components/views/Header/Header";
 import Home from "./components/pages/Home/Home";
 import Table from "./components/pages/Table/Table";
@@ -11,7 +12,10 @@ import Footer from "./components/views/Footer/Footer";
 
 const App = () => {
   const dispatch = useDispatch();
+  
   useEffect(() => dispatch(fetchTables()), [dispatch]);
+  useEffect(() => dispatch(fetchStatus()), [dispatch]);
+
   return (
     <Container>
       <Header />
