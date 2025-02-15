@@ -1,5 +1,6 @@
 
 import { useParams } from "react-router";
+import { Navigate } from "react-router";
 import { useSelector } from "react-redux";
 import { getTableById } from "../../../redux/tablesReducer";
 import { Container} from "react-bootstrap";
@@ -9,7 +10,7 @@ const Table = () => {
     const { id } = useParams();
     const table = useSelector(state => getTableById(state, id));
 
-    if(!table) return <h2>Loading...</h2>
+    if(!table) return <Navigate to="/" />
     else return(
         <Container>
             <h4>Table {table.id}</h4>
