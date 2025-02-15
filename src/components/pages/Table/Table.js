@@ -10,15 +10,15 @@ const Table = () => {
     const dispatch = useDispatch();
     const table = useSelector(state => getTableById(state, id));
 
-    const editTable = table => {
-        dispatch(editTableRequest(table));
+    const edit = table => {
+        dispatch(editTableRequest({...table}));
     }
 
     if(!table) return <Navigate to="/" />
     else return(
         <Container>
-            <h4>Table {table.id}</h4>
-            <FormTable txtBtn="Update" {...table} action={editTable} />
+            <h4>Table {table.number}</h4>
+            <FormTable txtBtn="Update" {...table} action={edit} />
         </Container>
     );
 }
