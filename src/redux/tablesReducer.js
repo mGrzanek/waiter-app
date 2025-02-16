@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import shortid from "shortid";
 
 //selectors
 export const getAllTables = ({tables}) => tables;
@@ -68,7 +68,7 @@ const tablesReducer = (statePart = [], action) => {
     case EDIT_TABLE:
       return statePart.map(table => table.id === action.payload.id ? { ...table, ...action.payload } : table);
     case ADD_TABLE:
-      return [ ...statePart, {id: nanoid(), ...action.payload}];
+      return [ ...statePart, {id: shortid(), ...action.payload}];
     case REMOVE_TABLE:
       return statePart.filter(table => table.id !== action.payload);
     default:
