@@ -54,11 +54,7 @@ export const addTableRequest = ( newTable ) => {
 export const removeTableRequest = ( tableId ) => {
   return(dispatch) => {
     const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json", 
-      },
-      body: JSON.stringify( tableId )
+      method: "DELETE"
     };
     fetch(`http://localhost:3131/api/tables/${tableId}`, options)
       .then(() => dispatch(removeTable( tableId )))

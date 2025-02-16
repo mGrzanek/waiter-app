@@ -12,9 +12,9 @@ import { useForm } from 'react-hook-form';
 const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txtBtn, action}) => {
     const [currentNumber, setCurrentNumber] = useState(number || '');
     const [currentStatus, setCurrentStatus] = useState(status || '');
-    const [currentPeopleAmount, setCurrentPeopleAmount] = useState(peopleAmount || '');
-    const [currentMaxPeopleAmount, setCurrentMaxPeopleAmount] = useState(maxPeopleAmount || '');
-    const [currentBill, setCurrentBill] = useState(bill || '');
+    const [currentPeopleAmount, setCurrentPeopleAmount] = useState(peopleAmount || 0);
+    const [currentMaxPeopleAmount, setCurrentMaxPeopleAmount] = useState(maxPeopleAmount || 0);
+    const [currentBill, setCurrentBill] = useState(bill || 0);
     const [busyStatus, setBusyStatus] = useState(false);
     
     const tableStatuses = useSelector(getAllStatuses);

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import styles from "./TableListItem.module.scss";
-import ModalPage from "../../features/ModalPage/ModalPage";
+import ModalPage from "../ModalPage/ModalPage";
 
 const TableListItem = ({ id, number, status }) => {
     const dispatch = useDispatch();

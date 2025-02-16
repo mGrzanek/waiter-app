@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getAllTables } from "../../../redux/tablesReducer";
 import { useSelector } from "react-redux";
 import Loader from "../../common/Loader/Loader";
-import TableListItem from "../../views/TableListItem/TableListItem";
+import TableListItem from "../TableListItem/TableListItem";
 
 const Tables = () => {
     const tables = useSelector(getAllTables);
