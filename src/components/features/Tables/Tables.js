@@ -20,7 +20,7 @@ const Tables = () => {
     return(
         <>
             {loader && <Loader />}
-            {!loader && <ListGroup className="pt-4">
+            {!loader && <ListGroup data-testid="tables-section" className="pt-4">
                 {tables.map(table => 
                     <TableListItem key={table.id} {...table} />
                 )}
