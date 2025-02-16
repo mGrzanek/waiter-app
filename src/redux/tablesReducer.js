@@ -1,3 +1,4 @@
+import { tab } from "@testing-library/user-event/dist/tab";
 import { nanoid } from "nanoid";
 
 //selectors
@@ -9,11 +10,12 @@ const createActionName = actionName => `app/tables/${actionName}`;
 const UPDATE_TABLES = createActionName("UPDATE_TABLES");
 const EDIT_TABLE = createActionName("EDIT_TABLE");
 const ADD_TABLE = createActionName("ADD_TABLE");
-
+const REMOVE_TABLE = createActionName("REMOVE_TABLE");
 
 // action creators
 export const addTable = payload => ({ type: ADD_TABLE, payload });
 export const editTable = payload => ({ type: EDIT_TABLE, payload });
+export const removeTable = payload => ({ type: REMOVE_TABLE, payload });
 export const updateTables = payload => ({ type: UPDATE_TABLES, payload });
 export const fetchTables = () => {
   return (dispatch) => {
@@ -49,6 +51,19 @@ export const addTableRequest = ( newTable ) => {
       .then(() => dispatch(addTable( newTable )));
   }
 };
+export const removeTableRequest = ( tableId ) => {
+  return(dispatch) => {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify( tableId )
+    };
+    fetch(`http://localhost:3131/api/tables/${tableId}`, options)
+      .then(() => dispatch(removeTable( tableId )))
+  }
+};
 
 const tablesReducer = (statePart = [], action) => {
   switch (action.type) {   
@@ -58,8 +73,11 @@ const tablesReducer = (statePart = [], action) => {
       return statePart.map(table => table.id === action.payload.id ? { ...table, ...action.payload } : table);
     case ADD_TABLE:
       return [ ...statePart, {id: nanoid(), ...action.payload}];
+    case REMOVE_TABLE:
+      return statePart.filter(table => table.id !== action.payload);
     default:
       return statePart;
   };
 };
+
 export default tablesReducer;
