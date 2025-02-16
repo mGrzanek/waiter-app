@@ -10,7 +10,7 @@ const AddTable = () => {
     }
 
     return(
-        <Container>
+        <Container data-testid="add-table-section">
             <h2>Add Table</h2>
             <FormTable txtBtn="Add" action={add} />
         </Container>
