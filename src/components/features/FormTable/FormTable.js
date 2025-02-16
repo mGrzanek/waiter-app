@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from 'react-redux';
 import { getAllStatuses } from '../../../redux/statusReducer';
+import { getByTableNumber } from '../../../redux/tablesReducer';
 import { Form, Button } from "react-bootstrap";
 import clsx from "clsx";
 import styles from "./FormTable.module.scss";
@@ -16,22 +17,28 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
     const [currentMaxPeopleAmount, setCurrentMaxPeopleAmount] = useState(maxPeopleAmount || 0);
     const [currentBill, setCurrentBill] = useState(bill || 0);
     const [busyStatus, setBusyStatus] = useState(false);
+    const [tableExist, setTableExist] = useState(false);
     
     const tableStatuses = useSelector(getAllStatuses);
+    const tableNumberExist = useSelector(state => getByTableNumber(state, currentNumber, id));
+
     const navigate = useNavigate();
 
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
     const handleSubmit = () => {
-        action({ 
-            id,
-            number: currentNumber, 
-            status: currentStatus, 
-            peopleAmount: parseInt(currentPeopleAmount), 
-            maxPeopleAmount: parseInt(currentMaxPeopleAmount), 
-            bill: parseInt(currentBill) 
-        });
-        navigate("/");
+        if(tableNumberExist) setTableExist(true)
+        else {
+            action({ 
+                id,
+                number: currentNumber, 
+                status: currentStatus, 
+                peopleAmount: parseInt(currentPeopleAmount), 
+                maxPeopleAmount: parseInt(currentMaxPeopleAmount), 
+                bill: parseInt(currentBill) 
+            });
+            navigate("/");
+        }
     };
 
     useEffect(() => {
@@ -68,6 +75,7 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                         onChange={e => setCurrentNumber(e.target.value)}
                     />
                     {errors.currentNumber && <small className="d-block form-text text-danger mt-2">Required field</small>}
+                    {tableExist && !errors.currentNumber &&<small className="d-block form-text text-danger mt-2">This number exist</small>}
                 </div>
             </Form.Group>
             <Form.Group className="py-2 d-flex align-items-center py-3">

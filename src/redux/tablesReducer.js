@@ -1,9 +1,9 @@
-import { tab } from "@testing-library/user-event/dist/tab";
 import { nanoid } from "nanoid";
 
 //selectors
 export const getAllTables = ({tables}) => tables;
 export const getTableById = ({tables}, tableId) => tables.find(table => table.id === tableId);
+export const getByTableNumber = ({tables}, tableNumber, tableId) => tables.find(table => table.number === tableNumber && table.id !== tableId);
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
