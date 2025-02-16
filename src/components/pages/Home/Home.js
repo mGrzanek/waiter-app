@@ -4,7 +4,7 @@ import styles from "./Home.module.scss";
 
 const Home = () => {
     return(
-        <Container>
+        <Container data-testid="home-section">
             <h1 className={styles.homeTitle}>All Tables:</h1>
             <Tables />
         </Container>

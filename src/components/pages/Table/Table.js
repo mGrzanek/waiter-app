@@ -16,7 +16,7 @@ const Table = () => {
 
     if(!table) return <Navigate to="/" />
     else return(
-        <Container>
+        <Container data-testid="section-table">
             <h4>Table {table.number}</h4>
             <FormTable txtBtn="Update" {...table} action={edit} />
         </Container>
