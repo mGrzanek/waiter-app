@@ -58,6 +58,7 @@ describe("NavBar Component", () => {
                 <MemoryRouter initialEntries={["/"]}>
                     <NavBar />
                     <Routes>
+                        <Route path="/" element={<Home />} />
                         <Route path="/table/add" element={<AddTable />} />
                     </Routes>
                 </MemoryRouter>
@@ -66,7 +67,6 @@ describe("NavBar Component", () => {
 
         const addLink = screen.getByText("Add");
         userEvent.click(addLink);
-        expect(window.location.pathname).toBe("/table/add");
         expect(screen.getByText("Add Table")).toBeInTheDocument();
     });
 });

@@ -19,7 +19,7 @@ const ModalPage = ({action, children}) => {
                 <Modal.Body>This action will completely remove this table from the app. Are you sure you want to do this?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Cancel
                     </Button>
                     <Button variant="danger" onClick={action}>
                         Accept

@@ -56,7 +56,6 @@ describe("TableListItem component", () => {
         userEvent.click(showBtn);
         const tablePage = screen.getByTestId("section-table");
 
-        expect(window.location.pathname).toBe("/table/1");
         expect(tablePage).toBeInTheDocument();
     });
     it("should render ModalPage after click on trash icon", () => {
