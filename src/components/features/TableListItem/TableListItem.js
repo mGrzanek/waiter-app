@@ -19,7 +19,7 @@ const TableListItem = ({ id, number, status }) => {
                 <span className={clsx(styles.elemInput, "px-4")}><b>Status:</b> {status}</span>
             </div>
             <div className="d-flex justify-content-between align-items-center">
-                <ModalPage children={<i className={clsx(styles.trashIcon, "fa fa-trash")} />} action={remove} />
+                <ModalPage children={<i data-testid="remove-btn" className={clsx(styles.trashIcon, "fa fa-trash")} />} action={remove} />
                 <Button as={NavLink} to={`/table/${id}`} variant="primary" className={clsx(styles.elemInput, "mx-4")}>Show more</Button>
             </div>
         </ListGroup.Item>

@@ -13,7 +13,7 @@ describe("Table component", () => {
         store.dispatch(updateTables([
             {
                 "id": "1",
-                "number": "1",
+                "number": 1,
                 "status": "Free",
                 "peopleAmount": 0,
                 "maxPeopleAmount": 5,
