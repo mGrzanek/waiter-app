@@ -32,6 +32,7 @@ describe("NavBar Component", () => {
 
         const brandLink = screen.getByText("Waiter.app");
         userEvent.click(brandLink);
+        expect(window.location.pathname).toBe("/");
         expect(screen.getByText("All Tables:")).toBeInTheDocument();
     });
     it("should render Home page after click on Home link", () => {
@@ -48,6 +49,7 @@ describe("NavBar Component", () => {
 
         const homeLink = screen.getByText("Home");
         userEvent.click(homeLink);
+        expect(window.location.pathname).toBe("/");
         expect(screen.getByText("All Tables:")).toBeInTheDocument();
     });
     it("should render Add page after click on Add link", () => {
@@ -64,6 +66,7 @@ describe("NavBar Component", () => {
 
         const addLink = screen.getByText("Add");
         userEvent.click(addLink);
+        expect(window.location.pathname).toBe("/table/add");
         expect(screen.getByText("Add Table")).toBeInTheDocument();
     });
 });
