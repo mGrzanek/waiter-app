@@ -66,11 +66,12 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
     return(
         <Form onSubmit={validate(handleSubmit)} className="col-9 col-sm-8 col-md-6 col-lg-4">
             <Form.Group className="py-2 d-flex align-items-centerpy-3">
-                <Form.Label className="col-sm-4 col-md-4 pt-2"><b>Number: </b></Form.Label>
+                <Form.Label htmlFor="currentNumber" className="col-sm-4 col-md-4 pt-2 fw-bold">Number:</Form.Label>
                 <div className='d-flex align-items-center'>
                     <Form.Control 
                         className={clsx(styles.numberInput, "text-center mx-4")} 
                         {...register("currentNumber", { min: 0, required: true})}
+                        id="currentNumber"
                         value={currentNumber}
                         onChange={e => setCurrentNumber(e.target.value)}
                     />
@@ -79,10 +80,11 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                 </div>
             </Form.Group>
             <Form.Group className="py-2 d-flex align-items-center py-3">
-                <Form.Label className="col-sm-4 col-md-4 pt-2"><b>Status:</b></Form.Label>
+                <Form.Label htmlFor="currentStatus" className="col-sm-4 col-md-4 pt-2 fw-bold">Status:</Form.Label>
                 <Form.Select 
                     {...register("currentStatus", { required: true, validate: value => value !== "default" })}
                     className="mx-4"
+                    id="currentStatus"
                     value={currentStatus}
                     onChange={e => setCurrentStatus(e.target.value)}
                 >   
@@ -93,11 +95,12 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                 {errors.currentStatus && <small className="d-block form-text text-danger mt-2">Status is required</small>}
             </Form.Group>
             <Form.Group className="py-2 d-flex align-items-center py-3">
-                <Form.Label className="col-sm-4 col-md-4 pt-2"><b>People:</b></Form.Label>
+                <Form.Label htmlFor="currentPeople" className="col-sm-4 col-md-4 pt-2 fw-bold">People:</Form.Label>
                 <div className="d-flex">
                     <Form.Control 
                         className={clsx(styles.numberInput, "mx-4 text-center")} 
                         type="number"
+                        data-testid="people-amount"
                         {...register("currentPeopleAmount", { min: 0, max: 10, required: true })}
                         value={currentPeopleAmount}
                         onChange={e => setCurrentPeopleAmount(e.target.value)}
@@ -107,6 +110,7 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                     <Form.Control 
                         className={clsx(styles.numberInput, "mx-4 text-center")} 
                         type="number"
+                        data-testid="max-people-amount"
                         {...register("currentMaxPeopleAmount", { min: 0, max: 10, required: true })}
                         value={currentMaxPeopleAmount}
                         onChange={e => setCurrentMaxPeopleAmount(e.target.value)}
@@ -115,12 +119,13 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                 </div>
             </Form.Group>
             {busyStatus && <Form.Group className="py-2 d-flex align-items-center py-3">
-                <Form.Label className="col-sm-4 col-md-4 pt-2 "><b>Bill:</b></Form.Label>
+                <Form.Label htmlFor="currentBillId" className="col-sm-4 col-md-4 pt-2 fw-bold">Bill:</Form.Label>
                 <div className='mx-4 d-flex align-items-center'>
                     <span>$</span>
                     <Form.Control 
                         className={clsx(styles.numberInput, "mx-2 text-center")} 
                         {...register("currentBill", { min: 0, required: true})}
+                        id="currentBillId"
                         value={currentBill}
                         onChange={e => setCurrentBill(e.target.value)}
                     />
