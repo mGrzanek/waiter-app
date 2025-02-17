@@ -13,18 +13,14 @@ import Footer from "./components/views/Footer/Footer";
 
 const App = () => {
   const dispatch = useDispatch();
-  const [loader, setLoader] = useState(false);
+
   useEffect(() => dispatch(fetchTables()), [dispatch]);
-  useEffect(() => {
-    setLoader(true);
-    dispatch(fetchStatus());
-    setLoader(false)
-  }, [dispatch]);
+  useEffect(() => dispatch(fetchStatus()), [dispatch]);
   return (
     <Container>
       <Header />
       <Routes>
-        <Route path="/" element={<Home loader={loader} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/table/:id" element={<Table />} />
         <Route path="/table/add" element={<AddTable />} />
         <Route path="*" element={<NotFound />} />
