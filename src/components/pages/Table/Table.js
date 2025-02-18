@@ -11,14 +11,14 @@ const Table = () => {
     const table = useSelector(state => getTableById(state, id));
 
     const edit = table => {
-        dispatch(editTableRequest({...table}));
+        dispatch(editTableRequest({id, ...table}));
     }
 
     if(!table) return <Navigate to="/" />
     else return(
         <Container data-testid="section-table">
             <h4>Table {table.number}</h4>
-            <FormTable txtBtn="Update" {...table} action={edit} />
+            <FormTable txtBtn="Update" {...table} action={edit} isEditMode={true} />
         </Container>
     );
 }

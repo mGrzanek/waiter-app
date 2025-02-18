@@ -5,7 +5,7 @@
       "number": "1",
       "status": "Free",
       "peopleAmount": 0,
-      "maxPeopleAmount": 5,
+      "maxPeopleAmount": null,
       "bill": 0
     },
     {
@@ -38,7 +38,7 @@
       "status": "Busy",
       "peopleAmount": 2,
       "maxPeopleAmount": 2,
-      "bill": 90
+      "bill": 0
     }
   ],
   "status": [
