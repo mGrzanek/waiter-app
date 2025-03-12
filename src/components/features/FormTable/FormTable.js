@@ -126,7 +126,7 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                     <div className='mx-4 d-flex align-items-center'>
                         <span>$</span>
                         <Form.Control 
-                            className={clsx(styles.billInput, "mx-2 text-center")} 
+                            className={clsx(styles.billInput, "text-center mx-2")} 
                             id="currentBillId"
                             type="number"
                             value={currentBill}
