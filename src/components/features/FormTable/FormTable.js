@@ -63,7 +63,7 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
     }, [currentPeopleAmount, currentMaxPeopleAmount]);
 
     useEffect(() => {
-        if(parseInt(currentBill) < 0 || isNaN(parseInt(currentBill))) setCurrentBill(0);
+        if(currentBill < 0) setCurrentBill(0);
     }, [currentBill]);
     
     return(   
@@ -126,8 +126,9 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                     <div className='mx-4 d-flex align-items-center'>
                         <span>$</span>
                         <Form.Control 
-                            className={clsx(styles.numberInput, "mx-2 text-center")} 
+                            className={clsx(styles.billInput, "mx-2 text-center")} 
                             id="currentBillId"
+                            type="number"
                             value={currentBill}
                             onChange={e => setCurrentBill(e.target.value)}
                             required
