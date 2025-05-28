@@ -68,7 +68,7 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
     
     return(   
         <>
-            {activeAlert && <Alert variant="primary">
+            {activeAlert && <Alert className='w-50 text-center' variant="warning">
                 All fields are required. Please correct the form.
             </Alert>}
             <Form onSubmit={handleSubmit} className="col-9 col-sm-8 col-md-6 col-lg-4">
@@ -126,7 +126,7 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                     <div className='mx-4 d-flex align-items-center'>
                         <span>$</span>
                         <Form.Control 
-                            className={clsx(styles.billInput, "text-center mx-2")} 
+                            className={clsx(styles.billInput, "text-center")} 
                             id="currentBillId"
                             type="number"
                             value={currentBill}
