@@ -1,6 +1,8 @@
 # waiter app
 This is a waiter application for managing table reservations in a restaurant. It allows you to view table statuses, edit reservations and manage table data with full CRUD operations.
 
+Project view: https://waiter-app-i6cc.onrender.com/
+
 ## Description
 
 The app provides:
