@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# waiter app
+This is a waiter application for managing table reservations in a restaurant. It allows you to view table statuses, edit reservations and manage table data with full CRUD operations.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+The app provides:
 
-In the project directory, you can run:
+- view all tables with their current status
+- view or edit individual table
+- create new tables
+- delete tables as needed.
 
-### `npm start`
+The application consists of subpages:
+- `/` – Home subpage displaying all tables with their current status.
+- `/table/:id` – Table subpages to view or edit individual tables.
+- `/table/add` – Add Table subpage to create new table.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+For tables with status "Busy", a field for the bill amount is displayed.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The application uses React Router for navigation and React + Redux for state management.
 
-### `npm test`
+Forms are validated by React Hook Form. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- **Frontend:** React, React Router, Redux, Redux Thunk, React Hook Form, Bootstrap, React Bootstrap, Sass, JSON server
+- **Testing:** Jest, React Testing Library (@testing-library/jest-dom, @testing-library/user-event)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Configuration
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To install dependencies, run:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`npm install`
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Start the frontend:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`npm start`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Build app for production with:
 
-## Learn More
+`npm run build`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This builds the app to the build folder. It bundles React in production mode, optimizes for best performance, minifies the code, and includes hashed filenames. Your app is ready to be deployed.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Testing
 
-### Code Splitting
+Launch the test runner in interactive watch mode:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+ `npm test`
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+MIT License
 
-### Making a Progressive Web App
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Monika Grzanek

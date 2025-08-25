@@ -17,6 +17,8 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
     const [currentBill, setCurrentBill] = useState(bill || '');
     const [busyStatus, setBusyStatus] = useState(false);
     const [tableExist, setTableExist] = useState(false);
+    const [currentPeopleMistake, setCurrentPeopleMistake] = useState(false);
+    const [maxPeopleAmountMistake, setMaxPeopleAmountMistake] = useState(false);
     const [activeAlert, setActiveAlert] = useState(false);
     
     const tableStatuses = useSelector(getAllStatuses);
@@ -30,14 +32,22 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
         if(tableNumberExist) setTableExist(true)
         else {
             if(currentNumber && currentStatus !== '' && !isNaN(parseInt(currentBill))){
-                action({ 
-                    number: currentNumber, 
-                    status: currentStatus, 
-                    peopleAmount: parseInt(currentPeopleAmount), 
-                    maxPeopleAmount: parseInt(currentMaxPeopleAmount), 
-                    bill: parseInt(currentBill)
-                });
-                navigate("/");
+                if(currentStatus === 'Reserved' || currentStatus === 'Busy'){
+                    if(currentMaxPeopleAmount > 0) {
+                        setMaxPeopleAmountMistake(false);
+                        if(currentPeopleAmount > 0 && currentPeopleAmount <= currentMaxPeopleAmount) {
+                            setCurrentPeopleMistake(false);
+                            action({ 
+                                number: currentNumber, 
+                                status: currentStatus, 
+                                peopleAmount: parseInt(currentPeopleAmount), 
+                                maxPeopleAmount: parseInt(currentMaxPeopleAmount), 
+                                bill: parseInt(currentBill)
+                            });
+                            navigate("/");                        
+                        } else setCurrentPeopleMistake(true);
+                    } else setMaxPeopleAmountMistake(true);                 
+                }
             } else {
                 setActiveAlert(true);
             }
@@ -121,6 +131,10 @@ const FormTable = ({id, number, status, peopleAmount, maxPeopleAmount, bill, txt
                         />
                     </div>
                 </Form.Group>
+                <div className='mx-5 px-5'>
+                    {currentPeopleMistake && <small role="alert" className="d-block form-text text-danger mt-2">Correct people amount</small>}
+                    {maxPeopleAmountMistake && <small role="alert" className="d-block form-text text-danger mt-2">Correct max people amount</small>}
+                </div>
                 {busyStatus && <Form.Group className="py-2 d-flex align-items-center py-3">
                     <Form.Label htmlFor="currentBillId" className="col-sm-4 col-md-4 pt-2 fw-bold">Bill:</Form.Label>
                     <div className='mx-4 d-flex align-items-center'>

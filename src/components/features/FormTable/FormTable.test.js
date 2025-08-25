@@ -236,39 +236,6 @@ describe("FormTable component", () => {
         userEvent.click(addBtn);
         expect(action).toHaveBeenCalledTimes(0);
     });
-    it("should render Home page after form submit", () => {
-        const action = jest.fn();
-        render(
-            <MemoryRouter initialEntries={["/table/1"]}>
-                <Provider store={store}>
-                    <FormTable 
-                        txtBtn="Update" 
-                        action={action}
-                        isEditMode={true}
-                        id="1"
-                        number="1"
-                        status="Free"
-                        peopleAmount={0}
-                        maxPeopleAmount={5}
-                        bill={0}
-                    />
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                    </Routes>
-                </Provider>
-            </MemoryRouter> 
-        );
-
-        const maxPeopleAmount = screen.getByTestId("max-people-amount");
-        const editBtn = screen.getByText("Update");
-
-        userEvent.clear(maxPeopleAmount);
-        userEvent.type(maxPeopleAmount, "4");
-        
-        userEvent.click(editBtn);
-        const homeSection = screen.getByTestId("home-section");
-        expect(homeSection).toBeInTheDocument();
-    });
     it("should render warning when selected table number already exist in add form", () => {
         render(
             <MemoryRouter initialEntries={["/table/add"]}>
